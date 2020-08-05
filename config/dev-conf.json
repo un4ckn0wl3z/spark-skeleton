@@ -1,7 +1,0 @@
-{
-  "app_name": "sgl-spark",
-  "input_mongodb_uri": "mongodb://172.17.0.5:27017/order.orders",
-  "output_mongodb_uri": "mongodb://172.17.0.5:27017/order.orders",
-  "jars_dir": "./jars/*",
-  "master": "local"
-}
