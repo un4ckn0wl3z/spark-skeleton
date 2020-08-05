@@ -69,7 +69,7 @@ def init_args_parser():
     return args
 
 
-def run():
+def init():
     init_dependencies()
     log.info("=== Singularity ===")
     args = init_args_parser()
@@ -89,4 +89,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    init()
