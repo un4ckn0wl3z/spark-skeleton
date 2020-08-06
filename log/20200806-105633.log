@@ -1,0 +1,20 @@
+06-08-2020 10:56:33 INFO     [app.py:10] === Initial libs and modules ===
+06-08-2020 10:56:33 INFO     [app.py:18] === Added ./config to path ===
+06-08-2020 10:56:33 INFO     [app.py:26] === Added ./core to path ===
+06-08-2020 10:56:33 INFO     [app.py:34] === Added ./jars to path ===
+06-08-2020 10:56:33 INFO     [app.py:42] === Added ./jobs to path ===
+06-08-2020 10:56:33 INFO     [app.py:50] === Added ./libs to path ===
+06-08-2020 10:56:33 INFO     [app.py:58] === Added ./log to path ===
+06-08-2020 10:56:33 INFO     [app.py:74] === Singularity ===
+06-08-2020 10:56:33 INFO     [app.py:76] Current environment: dev
+06-08-2020 10:56:33 INFO     [configuration.py:13] Reading config from: D:\SGL-BACKEND\sgl-spark-project/config/dev-conf.json
+06-08-2020 10:56:33 INFO     [app.py:78] === Spark project is running... ===
+06-08-2020 10:56:33 INFO     [app.py:79] == Configurations ==
+06-08-2020 10:56:33 INFO     [app.py:81] app_name: sgl-spark
+06-08-2020 10:56:33 INFO     [app.py:82] input_mongodb_uri: mongodb://172.17.0.5:27017/order.orders
+06-08-2020 10:56:33 INFO     [app.py:83] output_mongodb_uri: mongodb://172.17.0.5:27017/order.orders
+06-08-2020 10:56:33 INFO     [app.py:84] jars_dir: ./jars/*
+06-08-2020 10:56:33 INFO     [app.py:85] master: local
+06-08-2020 10:56:48 INFO     [spark.py:37] === Spark Info ===
+06-08-2020 10:56:48 INFO     [spark.py:38] <pyspark.sql.session.SparkSession object at 0x045221C0>
+06-08-2020 10:56:48 INFO     [spark.py:41] === Spark exec now ===

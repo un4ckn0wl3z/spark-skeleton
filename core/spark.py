@@ -4,6 +4,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import ArrayType, IntegerType, DecimalType, StringType
 from pyspark.sql.functions import *
 from core.logger import log
+from core.utils import Util
 
 
 class SparkManager:
@@ -32,9 +33,9 @@ class SparkManager:
             # .config(f'spark.mongodb.output.uri={self.config.output_mongodb_uri}') \
             # .config('spark.driver.extraClassPath', self.config.jars_dir) \
             # .getOrCreate()
+        # self.spark.sparkContext.setLogLevel('INFO')
 
         log.info("=== Spark Info ===")
-        log.info(self.spark)
 
     def run(self):
         log.info("=== Spark exec now ===")
@@ -45,6 +46,7 @@ class SparkManager:
         self.order = self.order.alias('order')
         # order.limit(1).toPandas()
         self.order.show()
+        log.info(Util.getShowString(self.order))
 
         self.subOrder = self.spark.read \
             .format("com.mongodb.spark.sql.DefaultSource") \
@@ -53,6 +55,7 @@ class SparkManager:
         self.subOrder = self.subOrder.alias('subOrder')
         # subOrder.select("*").toPandas()
         self.subOrder.show()
+        log.info(self.subOrder.show())
 
         self.orderItem = self.spark.read \
             .format("com.mongodb.spark.sql.DefaultSource") \
@@ -60,6 +63,7 @@ class SparkManager:
             .load()
         # orderItem = orderItem.alias('orderItem')
         self.orderItem.limit(1).toPandas()
+        log.info(self.orderItem.limit(1).toPandas())
         # orderItem.show()
 
         self.data = self.order.join(self.subOrder, self.order._id == self.subOrder.orderId) \
@@ -82,6 +86,7 @@ class SparkManager:
 
         self.financeOrder = self.financeOrder.select(["code", "financeType", "action"])
         self.financeOrder.show()
+        log.info(self.financeOrder.show())
         # financeOrder.printSchema()
         # financeOrder = financeOrder.groupBy('action').agg(collect_list('code').alias('code'))
         # testfinanceOrder = financeOrder.select("code")
@@ -92,6 +97,9 @@ class SparkManager:
         self.test = self.test.withColumn("productItem", lit(1))
         self.test = self.test.withColumn("action", lit("order"))
         self.test.show()
+        log.info(self.test.show())
+
+        log.info(self.test.show())
 
         self.n_to_array = udf(lambda n: [n] * n, ArrayType(IntegerType()))
         self.data2 = self.test.withColumn('totalQuantity', self.n_to_array('totalQuantity'))
@@ -100,7 +108,7 @@ class SparkManager:
         # # data3.printSchema()
         # data3 = data3.select("*")
         self.data3.show()
-
+        log.info(self.data3.show())
         # ppp = financeOrder.crossJoin(data3)
         # # ppp = data3.crossJoin(financeOrder)
         # ppp.orderBy('merchantName', ascending=False).show()
@@ -124,6 +132,7 @@ class SparkManager:
                                               .otherwise(col('productPrice'))
                                               )
         self.testtest.show()
+        log.info(self.testtest.show())
 
 
 
